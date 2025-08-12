@@ -15,7 +15,16 @@
 
 ## Getting Started
 
+**For local development** drop your Grafana json files into `output/grafana`.
+
+Then set account id and Api key in `start.sh`
+And run `./start.sh`
+
+Set execution permissions with `chmod +x ./start.sh`
+
+**For interactive execution** run:
 `python3 main.py`
+
 
 ## Usage
 

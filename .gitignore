@@ -1,0 +1,16 @@
+# Ignore created zip file
+newrelic.zip
+
+# Ignore output directory and compiled files
+output/
+*.pyc
+
+# Ignore custom vscode settings
+.vscode/settings.json
+query-errors.json
+
+# Config file
+config.json
+
+# Query cache file
+cache.json

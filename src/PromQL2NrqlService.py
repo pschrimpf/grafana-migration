@@ -48,7 +48,7 @@ class PromQL2NrqlService:
         if convertedQuery is None:
             convertedQuery = self.convertPromQLQuery(query)
         
-        return GrafanaHelper.finalVariableNormalization(convertedQuery)
+        return convertedQuery
 
     def convertPromQLQuery(self, query, range=True, clean=True):
         custom_headers = {
@@ -108,7 +108,9 @@ class PromQL2NrqlService:
             if yep_absent_query:
                 regExSearchTerm = r'SELECT (.*?' + yep_absent_query + '.*?) FROM Metric WHERE '
                 newNrql = re.sub(regExSearchTerm, 'SELECT count(1) FROM Metric WHERE metricName = \'' + yep_absent_query + '\' AND ', newNrql)
-                
+
+            newNrql = newNrql.replace('_total', '')
+            newNrql = GrafanaHelper.finalVariableNormalization(newNrql)
                 
             #if yep_rate_with_interval:
             #    newNrql = newNrql.replace('TIMESERIES 900000', f"TIMESERIES {yep_rate_with_interval}")         

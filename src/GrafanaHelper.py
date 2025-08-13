@@ -2,7 +2,7 @@ import re
 
 def convertGrafanaQuery(query):
     if query.startswith('label_values'):
-        return convertLabelValues(query)
+        return finalVariableNormalization(convertLabelValues(query))
     else:
         return None
 
